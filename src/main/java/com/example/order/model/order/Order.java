@@ -1,14 +1,14 @@
 package com.example.order.model.order;
 
-import com.example.order.model.product.Product;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "\"Order\"")
+@Getter
 public class Order {
 
     @Id

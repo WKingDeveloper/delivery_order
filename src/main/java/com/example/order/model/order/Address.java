@@ -1,9 +1,12 @@
 package com.example.order.model.order;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Getter
 public class Address {
 
     /**
