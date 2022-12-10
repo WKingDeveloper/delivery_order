@@ -4,6 +4,7 @@ spring:
   sql:
     init:
       platform: mariadb
+      mode: always
   datasource:
     url: jdbc:mariadb://localhost:3306/Order?serverTimezone=KST&createDatabaseIfNotExist=false&autoReconnect=true&useSSL=false
     username: root
