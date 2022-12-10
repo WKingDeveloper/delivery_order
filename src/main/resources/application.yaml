@@ -6,7 +6,7 @@ spring:
       platform: mariadb
       mode: always
   datasource:
-    url: jdbc:mariadb://localhost:3306/Order?serverTimezone=KST&createDatabaseIfNotExist=false&autoReconnect=true&useSSL=false
+    url: jdbc:mariadb://localhost:3306/DeliveryOrder?serverTimezone=KST&createDatabaseIfNotExist=false&autoReconnect=true&useSSL=false
     username: root
     password:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -22,3 +22,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
         default_batch_fetch_size: 50
+  gson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
