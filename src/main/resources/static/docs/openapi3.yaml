@@ -1,0 +1,481 @@
+openapi: 3.0.1
+info:
+  title: 주문 API 문서
+  description: "회원가입, 로그인, 주문 조회, 주문 주소 수정"
+  version: "1.0"
+servers:
+- url: http://localhost:8080/
+tags: []
+paths:
+  /orders:
+    get:
+      tags:
+      - orders
+      operationId: 주문 조회
+      parameters:
+      - name: page
+        in: query
+        description: 페이지 번호
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 페이지 당 출력 상품 개수
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orders1190004340'
+              examples:
+                주문 조회:
+                  value: |-
+                    {
+                      "code" : "200",
+                      "data" : {
+                        "content" : [ {
+                          "id" : 1,
+                          "address" : {
+                            "baseAddress" : "역삼동 709-11 한라아파트",
+                            "detailAddress" : "302호"
+                          },
+                          "paymentStatus" : "DONE",
+                          "platform" : "SELF",
+                          "request" : "문 앞에 놔주세요",
+                          "price" : 32000.0,
+                          "status" : "PAID",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:25:23",
+                          "updatedAt" : "2022-12-12 15:25:23",
+                          "editAble" : false,
+                          "issued" : false
+                        }, {
+                          "id" : 2,
+                          "address" : {
+                            "baseAddress" : "삼성동 62-1 신라호텔",
+                            "detailAddress" : "웨딩홀 2층 302호"
+                          },
+                          "paymentStatus" : "DONE",
+                          "platform" : "YOGIYO",
+                          "request" : "안전 운전해서 와주세요",
+                          "price" : 30000.0,
+                          "status" : "PACKING",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:25:23",
+                          "updatedAt" : "2022-12-12 15:25:23",
+                          "editAble" : true,
+                          "issued" : false
+                        }, {
+                          "id" : 3,
+                          "address" : {
+                            "baseAddress" : "삼성동 3-9",
+                            "detailAddress" : "603호"
+                          },
+                          "paymentStatus" : "CARD",
+                          "platform" : "BAEMIN",
+                          "request" : "수저,포크 가져다 주세요",
+                          "price" : 12000.0,
+                          "status" : "ISSUED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:25:23",
+                          "updatedAt" : "2022-12-12 15:25:23",
+                          "editAble" : false,
+                          "issued" : true
+                        }, {
+                          "id" : 4,
+                          "address" : {
+                            "baseAddress" : "역삼동 620-12 바로빌라",
+                            "detailAddress" : "104동 302호"
+                          },
+                          "paymentStatus" : "CASH",
+                          "platform" : "BAEMIN",
+                          "request" : "문앞에서 연락주세요",
+                          "price" : 15000.0,
+                          "status" : "ISSUED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:25:23",
+                          "updatedAt" : "2022-12-12 15:25:23",
+                          "editAble" : true,
+                          "issued" : true
+                        }, {
+                          "id" : 5,
+                          "address" : {
+                            "baseAddress" : "삼성동 45-1",
+                            "detailAddress" : "507호"
+                          },
+                          "paymentStatus" : "CARD",
+                          "platform" : "YOGIYO",
+                          "request" : "",
+                          "price" : 45000.0,
+                          "status" : "COMPLETED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:25:23",
+                          "updatedAt" : "2022-12-12 15:25:23",
+                          "editAble" : false,
+                          "issued" : true
+                        } ],
+                        "pageable" : {
+                          "sort" : {
+                            "empty" : false,
+                            "sorted" : true,
+                            "unsorted" : false
+                          },
+                          "offset" : 0,
+                          "pageNumber" : 0,
+                          "pageSize" : 10,
+                          "paged" : true,
+                          "unpaged" : false
+                        },
+                        "last" : true,
+                        "totalPages" : 1,
+                        "totalElements" : 5,
+                        "sort" : {
+                          "empty" : false,
+                          "sorted" : true,
+                          "unsorted" : false
+                        },
+                        "first" : true,
+                        "number" : 0,
+                        "size" : 10,
+                        "numberOfElements" : 5,
+                        "empty" : false
+                      },
+                      "error" : null
+                    }
+                주문 조회 성공:
+                  value: |-
+                    {
+                      "code" : "200",
+                      "data" : {
+                        "content" : [ {
+                          "id" : 1,
+                          "address" : {
+                            "baseAddress" : "역삼동 709-11 한라아파트",
+                            "detailAddress" : "302호"
+                          },
+                          "paymentStatus" : "DONE",
+                          "platform" : "SELF",
+                          "request" : "문 앞에 놔주세요",
+                          "price" : 32000.0,
+                          "status" : "PAID",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:41:49",
+                          "updatedAt" : "2022-12-12 15:41:49",
+                          "editAble" : false,
+                          "issued" : false
+                        }, {
+                          "id" : 2,
+                          "address" : {
+                            "baseAddress" : "삼성동 62-1 신라호텔",
+                            "detailAddress" : "웨딩홀 2층 302호"
+                          },
+                          "paymentStatus" : "DONE",
+                          "platform" : "YOGIYO",
+                          "request" : "안전 운전해서 와주세요",
+                          "price" : 30000.0,
+                          "status" : "PACKING",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:41:49",
+                          "updatedAt" : "2022-12-12 15:41:49",
+                          "editAble" : true,
+                          "issued" : false
+                        }, {
+                          "id" : 3,
+                          "address" : {
+                            "baseAddress" : "삼성동 3-9",
+                            "detailAddress" : "603호"
+                          },
+                          "paymentStatus" : "CARD",
+                          "platform" : "BAEMIN",
+                          "request" : "수저,포크 가져다 주세요",
+                          "price" : 12000.0,
+                          "status" : "ISSUED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:41:49",
+                          "updatedAt" : "2022-12-12 15:41:49",
+                          "editAble" : false,
+                          "issued" : true
+                        }, {
+                          "id" : 4,
+                          "address" : {
+                            "baseAddress" : "역삼동 620-12 바로빌라",
+                            "detailAddress" : "104동 302호"
+                          },
+                          "paymentStatus" : "CASH",
+                          "platform" : "BAEMIN",
+                          "request" : "문앞에서 연락주세요",
+                          "price" : 15000.0,
+                          "status" : "ISSUED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:41:49",
+                          "updatedAt" : "2022-12-12 15:41:49",
+                          "editAble" : true,
+                          "issued" : true
+                        }, {
+                          "id" : 5,
+                          "address" : {
+                            "baseAddress" : "삼성동 45-1",
+                            "detailAddress" : "507호"
+                          },
+                          "paymentStatus" : "CARD",
+                          "platform" : "YOGIYO",
+                          "request" : "",
+                          "price" : 45000.0,
+                          "status" : "COMPLETED",
+                          "phoneNumber" : "010-8973-8872",
+                          "createdAt" : "2022-12-12 15:41:49",
+                          "updatedAt" : "2022-12-12 15:41:49",
+                          "editAble" : false,
+                          "issued" : true
+                        } ],
+                        "pageable" : {
+                          "sort" : {
+                            "empty" : false,
+                            "unsorted" : false,
+                            "sorted" : true
+                          },
+                          "offset" : 0,
+                          "pageNumber" : 0,
+                          "pageSize" : 10,
+                          "paged" : true,
+                          "unpaged" : false
+                        },
+                        "last" : true,
+                        "totalPages" : 1,
+                        "totalElements" : 5,
+                        "size" : 10,
+                        "first" : true,
+                        "number" : 0,
+                        "sort" : {
+                          "empty" : false,
+                          "unsorted" : false,
+                          "sorted" : true
+                        },
+                        "numberOfElements" : 5,
+                        "empty" : false
+                      },
+                      "error" : null
+                    }
+  /orders/update/address:
+    get:
+      tags:
+      - orders
+      operationId: 주문 주소 변경 성공
+      parameters:
+      - name: id
+        in: query
+        description: 주문 아이디
+        required: true
+        schema:
+          type: string
+      - name: baseAddress
+        in: query
+        description: 변경할 기본 주소
+        required: true
+        schema:
+          type: string
+      - name: detailAddress
+        in: query
+        description: 변경할 상세 주소
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orders-update-address112583621'
+              examples:
+                주문 주소 변경 성공:
+                  value: |-
+                    {
+                      "code" : "200",
+                      "data" : {
+                        "orderId" : 2,
+                        "beforeAddress" : {
+                          "baseAddress" : "삼성동 62-1 신라호텔",
+                          "detailAddress" : "웨딩홀 2층 302호"
+                        },
+                        "afterAddress" : {
+                          "baseAddress" : "서울특별시 종로구 청와대로 1",
+                          "detailAddress" : "1층"
+                        }
+                      },
+                      "error" : null
+                    }
+components:
+  schemas:
+    orders-update-address112583621:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 응답 코드
+        data:
+          type: object
+          properties:
+            beforeAddress:
+              type: object
+              properties:
+                baseAddress:
+                  type: string
+                  description: 이전 기본 주소
+                detailAddress:
+                  type: string
+                  description: 이전 상세 주소
+              description: 이전 주소
+            afterAddress:
+              type: object
+              properties:
+                baseAddress:
+                  type: string
+                  description: 변경한 기본 주소
+                detailAddress:
+                  type: string
+                  description: 변경한 상세 주소
+              description: 변경 주소
+            orderId:
+              type: number
+              description: 주문 아이디
+          description: 응답 결과 데이터
+        error:
+          type: string
+          description: 에러 메시지
+    orders1190004340:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 응답 코드
+        data:
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 정보
+            numberOfElements:
+              type: number
+              description: 결과 데이터 수
+            size:
+              type: number
+              description: 한 페이지의 크기
+            last:
+              type: boolean
+              description: 설명 11
+            totalPages:
+              type: number
+              description: 전체 페이지의 수
+            pageable:
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 설명 7
+                pageNumber:
+                  type: number
+                  description: 설명 5
+                offset:
+                  type: number
+                  description: 설명 4
+                pageSize:
+                  type: number
+                  description: 설명 6
+                unpaged:
+                  type: boolean
+                  description: 설명 8
+                sort:
+                  type: object
+                  properties:
+                    unsorted:
+                      type: boolean
+                      description: 설명 3
+                    sorted:
+                      type: boolean
+                      description: 설명 2
+                    empty:
+                      type: boolean
+                      description: 설명 1
+                  description: 정렬
+              description: 페이징 가능 여부
+            sort:
+              type: object
+              properties:
+                unsorted:
+                  type: boolean
+                  description: 설명 17
+                sorted:
+                  type: boolean
+                  description: 설명 16
+                empty:
+                  type: boolean
+                  description: 설명 15
+              description: 설명 14
+            content:
+              type: array
+              description: 응답 결과 데이터 묶음
+              items:
+                type: object
+                properties:
+                  editAble:
+                    type: boolean
+                    description: 수정 가능 여부
+                  request:
+                    type: string
+                    description: 요청 사항
+                  createdAt:
+                    type: string
+                    description: 주문 생성 일시
+                  phoneNumber:
+                    type: string
+                    description: 전화번호
+                  address:
+                    type: object
+                    properties:
+                      baseAddress:
+                        type: string
+                        description: 기본 주소
+                      detailAddress:
+                        type: string
+                        description: 상세 주소
+                    description: 주소
+                  price:
+                    type: number
+                    description: 주문 가격
+                  id:
+                    type: number
+                    description: 주문 아이디
+                  issued:
+                    type: boolean
+                    description: 배차 확정 여부
+                  platform:
+                    type: string
+                    description: 플랫폼 종류
+                  paymentStatus:
+                    type: string
+                    description: 결제 상태
+                  status:
+                    type: string
+                    description: 배송 상태
+                  updatedAt:
+                    type: string
+                    description: 주문 수정 일시
+            first:
+              type: boolean
+              description: 첫 페이지 여부
+            empty:
+              type: boolean
+              description: 설명 20
+            totalElements:
+              type: number
+              description: "10"
+          description: 응답 결과 데이터
+        error:
+          type: string
+          description: 에러 메시지
