@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `Order` (
     `price` decimal(19,2) NOT NULL,
     `status` varchar(64) NOT NULL,
     `issued` tinyint(1) NOT NULL,
+    `editable` tinyint(1) NOT NULL,
     `phoneNumber` varchar(64) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;

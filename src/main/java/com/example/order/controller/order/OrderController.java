@@ -23,4 +23,14 @@ public class OrderController {
         return orderService.getOrders(pageParam,sizeParam);
     }
 
+    @RequestMapping(value = "/orders/update/address", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Response modifyOrderAddress(
+            @RequestParam(value = "id") Long orderId,
+            @RequestParam(value = "baseAddress") String baseAddressParam,
+            @RequestParam(value = "detailAddress") String detailAddressParam) {
+        log.debug("OrderController -> readChangedProducts()");
+        return orderService.updateOrderAddress(orderId, baseAddressParam, detailAddressParam);
+    }
+
 }

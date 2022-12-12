@@ -56,6 +56,12 @@ public class Order {
     private boolean isIssued;
 
     /**
+     * 주소 수정 가능 여부
+     */
+    @Column(name = "editable")
+    private boolean isEditAble;
+
+    /**
      * 고객 전화 번호
      */
     private String phoneNumber;
@@ -78,4 +84,8 @@ public class Order {
     @Column(insertable = false,updatable = false)
     private Timestamp updatedAt;
 
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
