@@ -1,6 +1,7 @@
 package com.example.order.controller.order;
 
-import com.example.order.model.response.Response;
+import com.example.order.model.response.ResponseDto;
+import com.example.order.model.response.SuccessResponseDto;
 import com.example.order.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ public class OrderController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Response readOrders(
+    public ResponseDto readOrders(
             @RequestParam(value = "page", defaultValue = "0") Integer pageParam,
             @RequestParam(value = "size", defaultValue = "50") Integer sizeParam) {
         log.debug("OrderController -> readChangedProducts()");
@@ -25,7 +26,7 @@ public class OrderController {
 
     @RequestMapping(value = "/orders/update/address", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Response modifyOrderAddress(
+    public ResponseDto modifyOrderAddress(
             @RequestParam(value = "id") Long orderId,
             @RequestParam(value = "baseAddress") String baseAddressParam,
             @RequestParam(value = "detailAddress") String detailAddressParam) {

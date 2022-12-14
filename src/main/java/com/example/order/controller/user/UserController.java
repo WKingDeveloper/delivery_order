@@ -1,14 +1,14 @@
 package com.example.order.controller.user;
 
-import com.example.order.model.response.Response;
+import com.example.order.model.response.ErrorResponseDto;
+import com.example.order.model.response.ResponseDto;
+import com.example.order.model.response.SuccessResponseDto;
 import com.example.order.model.user.UserSignUpRequestDto;
 import com.example.order.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,13 +25,10 @@ public class UserController {
 
     @PostMapping("/join")
     @ResponseStatus(HttpStatus.OK)
-    public Response join(@Valid @RequestBody UserSignUpRequestDto request, BindingResult bindingResult) {
+    public ResponseDto join(@Valid @RequestBody UserSignUpRequestDto request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
-            Response response = new Response();
-            response.setCode("400");
-            response.setError(errors.toString());
-            return response;
+            return new ErrorResponseDto("400",errors.toString());
         }
         log.debug("UserController -> join()");
         return userService.signUp(request);

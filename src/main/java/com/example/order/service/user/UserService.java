@@ -1,6 +1,8 @@
 package com.example.order.service.user;
 
-import com.example.order.model.response.Response;
+import com.example.order.model.response.ErrorResponseDto;
+import com.example.order.model.response.ResponseDto;
+import com.example.order.model.response.SuccessResponseDto;
 import com.example.order.model.user.User;
 import com.example.order.model.user.UserSignUpRequestDto;
 import com.example.order.repository.user.UserRepository;
@@ -22,34 +24,26 @@ public class UserService {
 
 
     @Transactional
-    public Response signUp(UserSignUpRequestDto requestDto){
-        Response response = new Response();
+    public ResponseDto signUp(UserSignUpRequestDto requestDto){
+
         log.debug("UserService -> UserSignUpRequestDto()");
         if (userRepository.findByUserId(requestDto.getUserId()).isPresent()){
-            response.setCode("401");
-            response.setError("이미 존재하는 이메일입니다.");
-            return response;
+            return new ErrorResponseDto("401","이미 존재하는 이메일입니다.");
         }
 
         if (userRepository.findByBusinessNumber(requestDto.getBusinessNumber()).isPresent()){
-            response.setCode("402");
-            response.setError("이미 존재하는 사업자 번호입니다.");
-            return response;
+            return new ErrorResponseDto("402","이미 존재하는 사업자 번호입니다.");
         }
 
-
         if (!requestDto.getPassword().equals(requestDto.getCheckedPassword())){
-            response.setCode("403");
-            response.setError("비밀번호가 일치하지 않습니다.");
-            return response;
+            return new ErrorResponseDto("403","비밀번호가 일치하지 않습니다.");
         }
 
         User user = userRepository.save(requestDto.toEntity());
         user.encodePassword(passwordEncoder);
 
-        response.setData("회원가입에 성공했습니다.");
 
-        return response;
+        return new SuccessResponseDto("회원가입에 성공했습니다.");
     }
 
 }

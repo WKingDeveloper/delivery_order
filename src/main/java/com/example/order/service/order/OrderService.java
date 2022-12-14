@@ -3,7 +3,9 @@ package com.example.order.service.order;
 import com.example.order.model.order.Address;
 import com.example.order.model.order.Order;
 import com.example.order.model.order.dto.OrderUpdatedAddress;
-import com.example.order.model.response.Response;
+import com.example.order.model.response.ErrorResponseDto;
+import com.example.order.model.response.ResponseDto;
+import com.example.order.model.response.SuccessResponseDto;
 import com.example.order.repository.order.OrderRepository;
 import com.example.order.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
@@ -23,30 +25,23 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public Response getOrders(Integer pageNumber, Integer pageSize) {
+    public SuccessResponseDto getOrders(Integer pageNumber, Integer pageSize) {
         log.debug("OrderService -> getOrders()");
-        Response response = new Response();
-        response.setData(orderRepository.findOrdersByDate(DateUtils.getThreeDaysAgo(), PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id"))));
-        response.setCode("200");
-        return response;
+        return new SuccessResponseDto(orderRepository.findOrdersByDate(DateUtils.getThreeDaysAgo(), PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id"))));
     }
 
-    public Response updateOrderAddress(Long orderId, String baseAddress, String detailAddress) {
+    public ResponseDto updateOrderAddress(Long orderId, String baseAddress, String detailAddress) {
         log.debug("OrderService -> updateOrderAddress()");
-        Response response = new Response();
+
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
         if(!optionalOrder.isPresent()) {
-            response.setCode("400");
-            response.setError("존재하지 않는 주문 ID 입니다.");
-            return response;
+            return new ErrorResponseDto("404", "존재하지 않는 주문 ID 입니다.");
         }
 
         Order order = optionalOrder.get();
         if(!order.isEditAble() || order.isIssued()){
-            response.setCode("400");
-            response.setError("주소를 수정할 수 없는 상품입니다.");
-            return response;
+            return new ErrorResponseDto("405", "주소를 수정할 수 없는 상품입니다.");
         }
 
         Address newAddress =  new Address(baseAddress, detailAddress);
@@ -56,10 +51,7 @@ public class OrderService {
 
         order.setAddress(newAddress);
 
-
-        response.setCode("200");
-        response.setData(orderUpdatedAddress);
-        return response;
+        return new SuccessResponseDto(orderUpdatedAddress);
     }
 
 }
