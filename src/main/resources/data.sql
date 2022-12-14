@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE `Order`;
+TRUNCATE `OrderProduct`;
 TRUNCATE `User`;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -10,5 +11,17 @@ VALUES
     (3, '삼성동 3-9','603호', 'CARD', 'BAEMIN', '수저,포크 가져다 주세요', 12000, 'ISSUED' , true, false,"010-8973-8872"),
     (4, '역삼동 620-12 바로빌라','104동 302호', 'CASH', 'BAEMIN', '문앞에서 연락주세요', 15000, 'ISSUED' , true, true,'010-8973-8872'),
     (5, '삼성동 45-1','507호', 'CARD', 'YOGIYO', '', 45000, 'COMPLETED' , true, false,'010-8973-8872');
+COMMIT;
 
+INSERT INTO `OrderProduct` (`id`, `name`, `quantity`, `orderId`)
+VALUES
+    (1, '오징어 덮밥', 1, 1),
+    (2, '탕수육 소', 1, 1),
+    (3, '제육 덮밥', 1, 2),
+    (4, '탕수육 소', 1, 2),
+    (5, '유린기', 1, 3),
+    (6, '짜장면', 1, 4),
+    (7, '탕수육 대', 1, 5),
+    (8, '볶음밥', 1, 5),
+    (9, '짜장면', 1, 5);
 COMMIT;

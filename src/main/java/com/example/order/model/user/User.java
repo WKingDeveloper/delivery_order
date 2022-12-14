@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,6 +53,19 @@ public class User implements UserDetails {
      * 사용자 전화번호
      */
     private String businessPhoneNumber;
+
+    /**
+     * 생성 시간
+     */
+    @Column(insertable = false,updatable = false)
+    private Timestamp createdAt;
+
+    /**
+     * 수정 시간
+     */
+    @Column(insertable = false,updatable = false)
+    private Timestamp updatedAt;
+
 
 
     public void encodePassword(PasswordEncoder passwordEncoder){

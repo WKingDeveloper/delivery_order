@@ -5,6 +5,8 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Order\"")
@@ -69,8 +71,8 @@ public class Order {
     /**
      * 주문 상품
      */
-//    @OneToMany
-//    private List<Product> product;
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderProduct> orderProduct = new ArrayList<>();
 
     /**
      * 생성 시간
