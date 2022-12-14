@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE `Order`;
+TRUNCATE `User`;
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `Order` (`id`, `address_1`, `address_2`, `paymentStatus`, `platform`, `request`, `price`, `status`, `issued`, `editable` ,`phoneNumber`)

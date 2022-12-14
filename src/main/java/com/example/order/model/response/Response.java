@@ -9,4 +9,10 @@ public class Response {
     private String code;
     private Object data;
     private String error;
+
+    public Response() {
+        this.code = "200";
+        this.data = "";
+        this.error = "";
+    }
 }

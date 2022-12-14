@@ -14,3 +14,16 @@ CREATE TABLE IF NOT EXISTS `Order` (
     `phoneNumber` varchar(64) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `User` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   `userId` varchar(64) NOT NULL,
+   `password` varchar(128) NOT NULL,
+   `role` varchar(32) NOT NULL,
+   `userPhoneNumber` varchar(16) NOT NULL,
+   `businessNumber` varchar(32) NOT NULL,
+   `businessPhoneNumber` varchar(16) NOT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
