@@ -18,17 +18,17 @@ public class UserSignUpRequestDto {
 
     @NotBlank(message = "개인 전화 번호를 입력해주세요.")
     @Pattern(regexp = "\\d{11}",
-            message = "-없이 11자리로 입력해주세요.")
+            message = "휴대폰 번호는 -없이 11자리로 입력해주세요.")
     private String userPhoneNumber;
 
     @NotBlank(message = "사업자 등록번호를 입력해주세요")
     @Pattern(regexp = "\\d{10}",
-            message = "-없이 10자리로 입력해주세요.")
+            message = "사업자 등록번호는 -없이 10자리로 입력해주세요.")
     private String businessNumber;
 
     @NotBlank(message = "사업자 전화 번호를 입력해주세요.")
     @Pattern(regexp = "\\d{11}",
-            message = "-없이 11자리로 입력해주세요.")
+            message = "사업자 전화 번호는 -없이 11자리로 입력해주세요.")
     private String businessPhoneNumber;
 
     @NotBlank(message = "비밀번호를 입력해주세요")
