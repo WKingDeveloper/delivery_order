@@ -2,7 +2,7 @@ package com.example.order.controller.user;
 
 import com.example.order.model.response.ErrorResponseDto;
 import com.example.order.model.response.ResponseDto;
-import com.example.order.model.response.SuccessResponseDto;
+import com.example.order.model.user.UserLoginRequestDto;
 import com.example.order.model.user.UserSignUpRequestDto;
 import com.example.order.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +26,23 @@ public class UserController {
     @PostMapping("/join")
     @ResponseStatus(HttpStatus.OK)
     public ResponseDto join(@Valid @RequestBody UserSignUpRequestDto request, BindingResult bindingResult) {
+        log.debug("UserController -> join()");
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
             return new ErrorResponseDto("400",errors.toString());
         }
-        log.debug("UserController -> join()");
         return userService.signUp(request);
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseDto login(@Valid @RequestBody UserLoginRequestDto request, BindingResult bindingResult) {
+        log.debug("UserController -> login()");
+        if (bindingResult.hasErrors()) {
+            List<String> errors = bindingResult.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
+            return new ErrorResponseDto("400",errors.toString());
+        }
+        return userService.signIn(request);
     }
 
 }

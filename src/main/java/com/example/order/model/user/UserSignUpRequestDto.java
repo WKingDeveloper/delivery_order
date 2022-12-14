@@ -46,7 +46,7 @@ public class UserSignUpRequestDto {
                 .businessNumber(businessNumber)
                 .businessPhoneNumber(businessPhoneNumber)
                 .password(password)
-                .role(Role.USER)
+                .role(Role.ROLE_USER)
                 .build();
     }
 }
